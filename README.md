@@ -29,3 +29,6 @@ For AAPL over the selected period, the strategy reduced some downside volatility
 1. Install the required libraries:
    ```bash
    pip install yfinance matplotlib
+2. Open Jupyter Notebook and run the notebook file:
+   ```bash
+   jupyter notebook
