@@ -32,3 +32,6 @@ For AAPL over the selected period, the strategy reduced some downside volatility
 2. Open Jupyter Notebook and run the notebook file:
    ```bash
    jupyter notebook
+## Key Learning
+
+This project shows how a simple rule-based trading strategy can be built, tested, and compared against a benchmark using real market data. It also highlights that intuitive strategies do not always outperform buy-and-hold.
