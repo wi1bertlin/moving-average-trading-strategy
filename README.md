@@ -1,76 +1,52 @@
 # Moving Average Trading Strategy Backtest
 
-## Overview
-This project implements a moving average crossover trading strategy using Python and real stock market data.
+## Research Question
+Can a simple 5-day and 10-day moving-average crossover strategy outperform buying and holding the same stock over a selected period?
 
-The goal is to evaluate whether a rule-based strategy can outperform a passive buy-and-hold approach.
+I built this project to understand how a trading rule becomes a testable strategy, and why a rule that sounds sensible may still fail to beat a passive benchmark.
 
----
+## Data
+The notebook downloads daily market prices from Yahoo Finance through `yfinance`.
 
-## Strategy
-- Short-term moving average: 5 days
-- Long-term moving average: 10 days
-- Buy signal: Short moving average is above the long moving average
-- Sell signal: Short moving average is below the long moving average
+The user chooses:
+- A stock ticker
+- A start date
+- An end date
 
----
+## Methodology
+1. Calculate the daily return of the selected stock.
+2. Calculate a 5-day short moving average and a 10-day long moving average.
+3. Hold the stock when the short moving average is above the long moving average.
+4. Move out of the stock when the short moving average falls below the long moving average.
+5. Apply each position to the following daily return to avoid using a signal before it exists.
+6. Compare the strategy equity curve with a buy-and-hold equity curve starting at $1.
 
-## Features
-- Download historical stock data using yfinance
-- Calculate short-term and long-term moving averages
-- Generate trading signals
-- Backtest the strategy
-- Compare performance against buy-and-hold
-- Visualise price data and equity curves
+## Outputs and Results
+The notebook produces:
+- The selected stock's price chart
+- Strategy and buy-and-hold total returns
+- A comparison of both equity curves
 
----
+In my initial AAPL test, the moving-average strategy underperformed buy-and-hold. The result was useful because it showed that avoiding some market declines can also mean missing strong recovery days.
 
-## How It Works
-The notebook:
-1. Takes a stock ticker and date range
-2. Downloads historical market prices
-3. Calculates the two moving averages
-4. Creates buy and sell signals
-5. Calculates strategy and buy-and-hold returns
-6. Compares the results using performance charts
+## Limitations
+- The 5-day and 10-day windows were chosen in advance and were not optimised.
+- The test does not include transaction costs, bid-ask spreads, or slippage.
+- Results can change significantly across stocks and time periods.
+- The strategy is tested on historical data and has no out-of-sample validation.
+- A single comparison with buy-and-hold is not enough to establish a reliable trading edge.
 
----
-
-## Results
-For AAPL over the selected period, the strategy reduced some downside volatility but underperformed a simple buy-and-hold approach.
-
-This demonstrates that even logical trading rules can perform differently across market conditions.
-
----
-
-## Technologies Used
-- Python
-- Jupyter Notebook
-- yfinance
-- matplotlib
-
----
+## What I Learned
+This project taught me how to translate a trading idea into positions, returns, and an equity curve. More importantly, I learned that a clear rule is not automatically a profitable rule, and that strategy results need to be challenged across different assumptions and market conditions.
 
 ## How to Run
 
-1. Install the required libraries:
+1. Install the dependencies:
 
     pip install -r requirements.txt
 
-2. Open the notebook:
-
-    moving_average_backtest.ipynb
-
-3. Run each block from top to bottom
-
----
-
-## Key Learning
-This project shows how a rule-based trading strategy can be built, tested, and compared against a benchmark using real market data.
-
-It also highlights that intuitive strategies do not always outperform buy-and-hold.
-
----
+2. Open `moving_average_backtest.ipynb` in Jupyter Notebook.
+3. Run the cells from top to bottom and enter a ticker and date range when prompted.
 
 ## Author
 Ping-Hsiang (Wilbert) Lin
